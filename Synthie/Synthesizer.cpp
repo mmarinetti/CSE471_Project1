@@ -1,7 +1,7 @@
 #include "StdAfx.h"
 #include "Synthesizer.h"
 #include <cmath>
-#include "ToneInstrument.h"
+#include "AdditiveSynth.h"
 #include "xmlhelp.h"
 #include <algorithm>
 
@@ -62,9 +62,9 @@ bool CSynthesizer::Generate(double* frame)
 
         // Create the instrument object
         CInstrument *instrument = NULL;
-        if(note->Instrument() == L"ToneInstrument")
+        if(note->Instrument() == L"AdditiveSynth")
         {
-            instrument = new CToneInstrument();
+            instrument = new CAdditiveSynth();
         }
 
         // Configure the instrument object
