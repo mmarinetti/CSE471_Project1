@@ -1,10 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <score bpm="120" beatspermeasure="2">
-<<<<<<< HEAD
      <instrument instrument="AdditiveSynth" chorus="1" flange="1" noisegate="1" compression="1">
-=======
-     <instrument instrument="AdditiveSynth">
->>>>>>> 1d0138f9f98bc77ec4495f7b1821da5a18519e45
           <note measure="1" beat="2" duration="0.33" amplitudes="1 0.0 .3 .45 .63 .75 .86 1" note="F4"/>
           <note measure="1" beat="2.33" duration="0.33" amplitudes="1 0.0 .3 .45 .63 .75 .86 1" note="G4"/>
           <note measure="1" beat="2.6" duration="0.33" amplitudes="1 0.0 .3 .45 .63 .75 .86 1" note="A4"/>
@@ -41,7 +37,6 @@
           <note measure="8" beat="1" duration="3" amplitudes="1 0.0 .3 .45 .63 .75 .86 1" note="F4"/>
           <note measure="8" beat="1" duration="3" amplitudes="1 0.0 .3 .45 .63 .75 .86 1" note="D4"/>
      </instrument>
-<<<<<<< HEAD
      <instrument instrument="Chorus">
           <note delay=".0025" wet=".7" dry=".3" range=".5" rate="2"/>
      </instrument>
@@ -54,7 +49,5 @@
      <instrument instrument="Compressor">
           <note threshold="10" wet="1" dry="0" ratio="2"/>
      </instrument>
-=======
->>>>>>> 1d0138f9f98bc77ec4495f7b1821da5a18519e45
 </score>
 
