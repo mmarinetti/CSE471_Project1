@@ -1,13 +1,10 @@
 #include "StdAfx.h"
 #include "Synthesizer.h"
 #include <cmath>
-<<<<<<< origin/master
 #include "AdditiveSynth.h"
-=======
 #include "ToneInstrument.h"
 #include "DrumInstrument.h"
 #include "DrumFactory.h"
->>>>>>> local
 #include "xmlhelp.h"
 #include <algorithm>
 
