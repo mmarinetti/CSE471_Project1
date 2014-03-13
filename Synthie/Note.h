@@ -15,10 +15,15 @@ public:
 	void XmlLoad(IXMLDOMNode * xml, std::wstring & instrument);
 	bool operator<(const CNote &b);
 
+	bool hasEffect(int effect) {return m_effects[effect];}
+	void setEffect(int effect) {m_effects[effect] = true;}
+
 private:
     std::wstring m_instrument;
     int m_measure;
     double m_beat;
     CComPtr<IXMLDOMNode> m_node;
+
+	bool m_effects[4];
 };
 

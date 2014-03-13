@@ -1,9 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <score bpm="120" beatspermeasure="2">
+<<<<<<< HEAD
      <instrument instrument="AdditiveSynth">
           <note measure="1" beat="2.00" duration="0.4"  crossFadeIn=".15" crossFadeOut=".15" amplitudes="1 .8 .6 " note="F4"/>
           <note measure="1" beat="2.33" duration="0.4"  crossFadeIn=".15" crossFadeOut=".15" amplitudes="1 .8 .6 " note="G4"/>
           <note measure="1" beat="2.60" duration="0.33" crossFadeIn=".15" crossFadeOut=".15" amplitudes="1 .8 .6 " note="A4"/>
+=======
+     <instrument instrument="AdditiveSynth" chorus="1" flange="1" noisegate="1" compression="1">
+          <note measure="1" beat="2" duration="0.33" amplitudes="1 0.0 .3 .45 .63 .75 .86 1" note="F4"/>
+          <note measure="1" beat="2.33" duration="0.33" amplitudes="1 0.0 .3 .45 .63 .75 .86 1" note="G4"/>
+          <note measure="1" beat="2.6" duration="0.33" amplitudes="1 0.0 .3 .45 .63 .75 .86 1" note="A4"/>
+>>>>>>> b8bbb18743c6c98c5a1fa5c94580e5944957f262
 
           <note measure="2" beat="1" duration="0.5" ADSR=".1 0 1.0 .9" amplitudes="1 .8 .6 .4" note="Bb4"/>
           <note measure="2" beat="1" duration="0.5" ADSR=".1 0 1.0 .9" amplitudes="1 .8 .6 .4" note="G4"/>
@@ -36,6 +43,18 @@
           <note measure="8" beat="1" duration="3" amplitudes="1 .8 .6 .6" note="Bb4" ADSR =".05 .05 1.1 .1" />
           <note measure="8" beat="1" duration="3" amplitudes="1 .8 .6 .6" note="F4"  ADSR =".05 .05 1.1 .1" />
           <note measure="8" beat="1" duration="3" amplitudes="1 .8 .6 .6" note="D4"  ADSR =".05 .05 1.1 .1" />
+     </instrument>
+     <instrument instrument="Chorus">
+          <note delay=".0025" wet=".7" dry=".3" range=".5" rate="2"/>
+     </instrument>
+     <instrument instrument="Flange">
+          <note delay=".0005" wet=".7" dry=".3" range=".5" rate="2" level="2"/>
+     </instrument>
+     <instrument instrument="NoiseGate">
+          <note threshold="50" wet="1" dry="0"/>
+     </instrument>
+     <instrument instrument="Compressor">
+          <note threshold="10" wet="1" dry="0" ratio="2"/>
      </instrument>
 </score>
 
