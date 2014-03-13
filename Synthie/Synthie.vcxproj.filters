@@ -78,6 +78,7 @@
     <ClCompile Include="AdditiveSynth.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="Chorus.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -90,6 +91,8 @@
     <ClCompile Include="Compression.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+=======
+>>>>>>> 1d0138f9f98bc77ec4495f7b1821da5a18519e45
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="audio\DirSound.h">
@@ -161,6 +164,7 @@
     <ClInclude Include="AdditiveSynth.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="Chorus.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -173,6 +177,8 @@
     <ClInclude Include="Compression.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+=======
+>>>>>>> 1d0138f9f98bc77ec4495f7b1821da5a18519e45
   </ItemGroup>
   <ItemGroup>
     <None Include="res\Synthie.ico">
