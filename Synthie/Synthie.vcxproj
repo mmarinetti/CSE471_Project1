@@ -172,6 +172,7 @@
     <ClInclude Include="ToneInstrument.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\..\Desktop\crossFadeTest.score" />
     <None Include="..\fight2custom.score" />
     <None Include="res\Synthie.ico" />
     <None Include="res\Synthie.rc2" />
