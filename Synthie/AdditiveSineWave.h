@@ -21,6 +21,10 @@ public:
 
 	void SetDuration(double d){m_duration = d;}
 
+	void SetVibratoRate(double d){ m_vibratoRate = d;}
+
+	void SetVibratoFreq(double d){ m_vibratoFreq = d;}
+
 	void GenerateWaveTable();
 
 private:

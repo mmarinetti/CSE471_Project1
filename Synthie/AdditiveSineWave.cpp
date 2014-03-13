@@ -16,8 +16,8 @@ short catchOverflow(double d)
 
 CAdditiveSineWave::CAdditiveSineWave(void)
 {
-	m_vibratoFreq = 10.0;
-	m_vibratoRate = 8.0 ;
+	m_vibratoFreq = 0.0;
+	m_vibratoRate = 0.0 ;
 	m_amplitude = 1000.0;
 	m_amp[0] = 1.0;
 	for(int i=1; i<=7; i++) m_amp[i] = 0.0;

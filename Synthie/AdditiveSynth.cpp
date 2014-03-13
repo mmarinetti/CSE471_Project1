@@ -9,8 +9,10 @@
 
 CAdditiveSynth::CAdditiveSynth(void)
 {
-	m_duration = 0.1;
-	m_attack = m_release = .05;
+	m_crossFadeIn = 0.0;
+	m_crossFadeOut = 0.0;
+	m_attack = m_release = m_decay = 0;
+	m_sustain = 1.0;
 }
 
 
@@ -21,7 +23,7 @@ CAdditiveSynth::~CAdditiveSynth(void)
 void CAdditiveSynth::Start()
 {
     m_sinewave.SetSampleRate(GetSampleRate());
-	m_sinewave.SetDuration(m_duration*GetSecondsPerBeat());
+	m_sinewave.SetDuration(m_duration);
     m_sinewave.Start();
     m_time = 0;
 }
@@ -39,24 +41,39 @@ bool CAdditiveSynth::Generate()
     m_frame[1] = m_sinewave.Frame(1);
 
 	//ATTACK AND RELEASE IMPLEMENATION
-	double factor = 0;
+	/*double factor = 1.0;
+	if(m_time < m_attack && m_time > (m_duration  - m_release))
+		factor = m_time*1./m_attack < m_time*-1./m_release + (1./m_release)*(m_duration) ? m_time*-1./m_release + (1./m_release)*(m_duration) : m_time*1./m_attack;
+	else if(m_time < m_attack)
+		factor = m_time*1./m_attack;
+	else if(m_time > (m_duration  - m_release))
+		factor = m_time*-1./m_release + (1./m_release)*(m_duration);
+*/
+	double factor = 1.0;
+	double sign = -1.0;
+	if(m_sustain > 1.0) sign = 1.0;
+
 	if(m_time < m_attack){
 		factor = m_time*1./m_attack;
-		m_frame[0] *= factor;
-		m_frame[1] *= factor;
 	}
-	else if(m_time > ((m_duration * GetSecondsPerBeat()) - m_release)){
-		factor = m_time*-1./m_release + (1./m_release)*(m_duration*GetSecondsPerBeat());
-		m_frame[0] *= factor;
-		m_frame[1] *= factor;
+	else if( m_time < m_decay){
+		factor = sign*((1.0 - m_sustain)/(m_decay - m_attack))*(m_time) + (1.0 - sign*((1.0 - m_sustain)/(m_decay - m_attack))*(m_attack));
+	}
+	else if(m_time > (m_duration  - m_release) && m_release != 0){
+		if(m_sustain <= 0) m_sustain = 1.0;
+		factor = m_time*-m_sustain/m_release + (m_sustain/m_release)*(m_duration);
+	}
+	else{
+		factor = m_sustain;
 	}
 
+	m_frame[0] = m_frame[1] *= factor;
 
-    // Update time
+	// Update time
     m_time += GetSamplePeriod();
 
     // We return true until the time reaches the duration.
-    return m_time < (m_duration * GetSecondsPerBeat());
+    return m_time < m_duration;
 }
 
 void CAdditiveSynth::SetNote(CNote *note)
@@ -113,6 +130,49 @@ void CAdditiveSynth::SetNote(CNote *note)
 
             SetAmplitude(harmonics[0]);
         }
+		else if(name == "crossFadeIn")
+        {	
+			value.ChangeType(VT_R8);
+            SetCrossFadeIn(value.dblVal * m_duration);
+        }
+		else if(name == "crossFadeOut")
+        {
+			value.ChangeType(VT_R8);
+            SetCrossFadeOut(value.dblVal * m_duration);
+        }
+		else if(name == "ADSR"){
+			std::wstring wide( value.bstrVal ); 
+			std::string str( wide.begin(), wide.end() );
+			
+			std::stringstream ss(str);
+			std::string item;
+						
+			std::getline(ss, item, char(32));
+			m_attack =  atof(item.c_str()) * m_duration;
+
+			std::getline(ss, item, char(32));
+			m_decay = m_attack + atof(item.c_str()) * m_duration;
+
+			std::getline(ss, item, char(32));
+			m_sustain = atof(item.c_str());
+
+			std::getline(ss, item, char(32));
+			m_release = atof(item.c_str()) * m_duration;
+		}
+		else if( name == "vibrato"){
+			std::wstring wide( value.bstrVal ); 
+			std::string str( wide.begin(), wide.end() );
+			
+			std::stringstream ss(str);
+			std::string item;
+						
+			std::getline(ss, item, char(32));
+			m_sinewave.SetVibratoRate(atof(item.c_str()));
+
+			std::getline(ss, item, char(32));
+			m_sinewave.SetVibratoFreq(atof(item.c_str()));
+		}
+
     }
 
 }
