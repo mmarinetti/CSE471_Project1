@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<score bpm="120" beatspermeasure="2">
+     <instrument instrument="AdditiveSynth" chorus="1" flange="1" noisegate="1" compression="1">
+          <note measure="1" beat="2" duration="0.33" amplitudes="1 0.0 .3 .45 .63 .75 .86 1" note="F4"/>
+          <note measure="1" beat="2.33" duration="0.33" amplitudes="1 0.0 .3 .45 .63 .75 .86 1" note="G4"/>
+          <note measure="1" beat="2.6" duration="0.33" amplitudes="1 0.0 .3 .45 .63 .75 .86 1" note="A4"/>
+
+          <note measure="2" beat="1" duration="0.5" amplitudes="1 0.0 .3 .45 .63 .75 .86 1" note="Bb4"/>
+          <note measure="2" beat="1" duration="0.5" amplitudes="1 0.0 .3 .45 .63 .75 .86 1" note="G4"/>
+          <note measure="2" beat="1" duration="0.5" amplitudes="1 0.0 .3 .45 .63 .75 .86 1" note="Eb4"/>
+
+          <note measure="3" beat="1" duration="0.5" amplitudes="1 0.0 .3 .45 .63 .75 .86 1" note="Bb4"/>
+          <note measure="3" beat="1" duration="0.5" amplitudes="1 0.0 .3 .45 .63 .75 .86 1" note="G4"/>
+          <note measure="3" beat="1" duration="0.5" amplitudes="1 0.0 .3 .45 .63 .75 .86 1" note="Eb4"/>
+
+          <note measure="4" beat="1" duration="0.5" amplitudes="1 0.0 .3 .45 .63 .75 .86 1" note="Bb4"/>
+          <note measure="4" beat="1" duration="0.5" amplitudes="1 0.0 .3 .45 .63 .75 .86 1" note="D4"/>
+          <note measure="4" beat="1" duration="0.5" amplitudes="1 0.0 .3 .45 .63 .75 .86 1" note="F4"/>
+
+          <note measure="4" beat="2" duration="0.5" amplitudes="1 0.0 .3 .45 .63 .75 .86 1" note="Bb4"/>
+          <note measure="4" beat="2" duration="0.5" amplitudes="1 0.0 .3 .45 .63 .75 .86 1" note="G4"/>
+          <note measure="4" beat="2" duration="0.5" amplitudes="1 0.0 .3 .45 .63 .75 .86 1" note="Eb4"/>
+
+          <note measure="5" beat="1" duration="0.5" amplitudes="1 0.0 .3 .45 .63 .75 .86 1" note="Bb4"/>
+          <note measure="5" beat="1" duration="0.5" amplitudes="1 0.0 .3 .45 .63 .75 .86 1" note="D4"/>
+          <note measure="5" beat="1" duration="0.5" amplitudes="1 0.0 .3 .45 .63 .75 .86 1" note="F4"/>
+
+          <note measure="6" beat="1" duration="0.5" amplitudes="1 0.0 .3 .45 .63 .75 .86 1" note="G4"/>
+          <note measure="6" beat="1.5" duration="0.5" amplitudes="1 0.0 .3 .45 .63 .75 .86 1" note="F#4"/>
+          <note measure="6" beat="2" duration="0.5" amplitudes="1 0.0 .3 .45 .63 .75 .86 1" note="G4"/>
+          <note measure="6" beat="2.5" duration="0.5" amplitudes="1 0.0 .3 .45 .63 .75 .86 1" note="G#4"/>
+
+          <note measure="7" beat="1" duration="1" amplitudes="1 0.0 .3 .45 .63 .75 .86 1" note="A4"/>
+          <note measure="7" beat="2" duration="1" amplitudes="1 0.0 .3 .45 .63 .75 .86 1" note="F4"/>
+
+          <note measure="8" beat="1" duration="3" amplitudes="1 0.0 .3 .45 .63 .75 .86 1" note="Bb4"/>
+          <note measure="8" beat="1" duration="3" amplitudes="1 0.0 .3 .45 .63 .75 .86 1" note="F4"/>
+          <note measure="8" beat="1" duration="3" amplitudes="1 0.0 .3 .45 .63 .75 .86 1" note="D4"/>
+     </instrument>
+     <instrument instrument="Chorus">
+          <note delay=".0025" wet=".7" dry=".3" range=".5" rate="2"/>
+     </instrument>
+     <instrument instrument="Flange">
+          <note delay=".0005" wet=".7" dry=".3" range=".5" rate="2" level="2"/>
+     </instrument>
+     <instrument instrument="NoiseGate">
+          <note threshold="50" wet="1" dry="0"/>
+     </instrument>
+     <instrument instrument="Compressor">
+          <note threshold="10" wet="1" dry="0" ratio="2"/>
+     </instrument>
+</score>
+

@@ -72,6 +72,24 @@
     <ClCompile Include="Note.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="AdditiveSineWave.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AdditiveSynth.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Chorus.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Flange.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="NoiseGate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Compression.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="audio\DirSound.h">
@@ -137,6 +155,24 @@
     <ClInclude Include="Note.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="AdditiveSineWave.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AdditiveSynth.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Chorus.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Flange.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="NoiseGate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Compression.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\Synthie.ico">
@@ -155,6 +191,7 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="test1.score" />
+    <None Include="..\fight2custom.score" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Synthie.rc">

@@ -5,6 +5,11 @@
 #include "xmlhelp.h"
 #include <algorithm>
 
+const static int CHORUS = 0;
+const static int FLANGE = 1;
+const static int NOISEGATE = 2;
+const static int COMPRESSOR = 3;
+
 
 CSynthesizer::CSynthesizer(void)
 {
@@ -16,6 +21,12 @@ CSynthesizer::CSynthesizer(void)
 	m_bpm = 120;
 	m_secperbeat = 1/(m_bpm/60);
 	m_beatspermeasure = 4;
+	m_chorus.setSampleRate(m_sampleRate);
+	m_flange.setSampleRate(m_sampleRate);
+	m_chorusOn = false;
+	m_flangeOn = false;
+	m_noiseGateOn = false;
+	m_compressorOn = false;
 }
 
 
@@ -75,6 +86,23 @@ bool CSynthesizer::Generate(double* frame)
 			instrument->SetNote(note);
             instrument->Start();
 
+			if(note->hasEffect(CHORUS))
+			{
+				instrument->setEffect(CHORUS);
+			}
+			if(note->hasEffect(FLANGE))
+			{
+				instrument->setEffect(FLANGE);
+			}
+			if(note->hasEffect(NOISEGATE))
+			{
+				instrument->setEffect(NOISEGATE);
+			}
+			if(note->hasEffect(COMPRESSOR))
+			{
+				instrument->setEffect(COMPRESSOR);
+			}
+
             m_instruments.push_back(instrument);
         }
 
@@ -121,6 +149,49 @@ bool CSynthesizer::Generate(double* frame)
             {
                 frame[c] += instrument->Frame(c);
             }
+
+			double newFrame[2];
+			newFrame[0] = 0;
+			newFrame[1] = 0;
+
+			// Apply Effects
+			double chframe[2];
+			if(instrument->hasEffect(CHORUS))
+			{
+				m_chorus.Process(frame, chframe);
+				newFrame[0] += chframe[0] / instrument->getNumEffects();
+				newFrame[1] += chframe[1] / instrument->getNumEffects();
+			}
+
+			double fframe[2];
+			if(instrument->hasEffect(FLANGE))
+			{
+				m_flange.Process(frame, fframe);
+				newFrame[0] += fframe[0] / instrument->getNumEffects();
+				newFrame[1] += fframe[1] / instrument->getNumEffects();
+			}
+
+			double nframe[2];
+			if(instrument->hasEffect(NOISEGATE))
+			{
+				m_noiseGate.Process(frame, nframe);
+				newFrame[0] += nframe[0] / instrument->getNumEffects();
+				newFrame[1] += nframe[1] / instrument->getNumEffects();
+			}
+
+			double cframe[2];
+			if(instrument->hasEffect(COMPRESSOR))
+			{
+				m_compression.Process(frame, cframe);
+				newFrame[0] += cframe[0] / instrument->getNumEffects();
+				newFrame[1] += cframe[1] / instrument->getNumEffects();
+			}
+
+			if(instrument->getNumEffects() > 0)
+			{
+				frame[0] = newFrame[0];
+				frame[1] = newFrame[1];
+			}
         }
         else
         {
@@ -274,6 +345,7 @@ void CSynthesizer::XmlLoadScore(IXMLDOMNode * xml)
 		if(name == L"instrument")
         {
             XmlLoadInstrument(node);
+			m_chorusOn, m_flangeOn, m_noiseGateOn, m_compressorOn = false;
         }
 
     }
@@ -311,6 +383,30 @@ void CSynthesizer::XmlLoadInstrument(IXMLDOMNode * xml)
         {
             instrument = value.bstrVal;
         }
+		else if(name == "chorus")
+		{
+			value.ChangeType(VT_I4);
+			if(value.intVal == 1)
+				m_chorusOn = true;
+		}
+		else if(name == "flange")
+		{
+			value.ChangeType(VT_I4);
+			if(value.intVal == 1)
+				m_flangeOn = true;
+		}
+		else if(name == "noisegate")
+		{
+			value.ChangeType(VT_I4);
+			if(value.intVal == 1)
+				m_noiseGateOn = true;
+		}
+		else if(name == "compression")
+		{
+			value.ChangeType(VT_I4);
+			if(value.intVal == 1)
+				m_compressorOn = true;
+		}
     }
 
     
@@ -332,6 +428,33 @@ void CSynthesizer::XmlLoadInstrument(IXMLDOMNode * xml)
 
 void CSynthesizer::XmlLoadNote(IXMLDOMNode * xml, std::wstring & instrument)
 {
+	if(instrument == L"Chorus")
+	{
+		m_chorus.XmlLoad(xml);
+	}
+	else if(instrument == L"Flange")
+	{
+		m_flange.XmlLoad(xml);
+	}
+	else if(instrument == L"NoiseGate")
+	{
+		m_noiseGate.XmlLoad(xml);
+	}
+	else if(instrument == L"Compressor")
+	{
+		m_compression.XmlLoad(xml);
+	}
+
 	m_notes.push_back(CNote());
     m_notes.back().XmlLoad(xml, instrument);
+
+	if(m_chorusOn)
+		m_notes.back().setEffect(CHORUS);
+	if(m_flangeOn)
+		m_notes.back().setEffect(FLANGE);
+	if(m_noiseGateOn)
+		m_notes.back().setEffect(NOISEGATE);
+	if(m_compressorOn)
+		m_notes.back().setEffect(COMPRESSOR);
+
 }
