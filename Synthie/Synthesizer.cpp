@@ -1,7 +1,13 @@
 #include "StdAfx.h"
 #include "Synthesizer.h"
 #include <cmath>
+<<<<<<< origin/master
 #include "AdditiveSynth.h"
+=======
+#include "ToneInstrument.h"
+#include "DrumInstrument.h"
+#include "DrumFactory.h"
+>>>>>>> local
 #include "xmlhelp.h"
 #include <algorithm>
 
@@ -76,6 +82,11 @@ bool CSynthesizer::Generate(double* frame)
         if(note->Instrument() == L"AdditiveSynth")
         {
             instrument = new CAdditiveSynth();
+        }
+        else if(note->Instrument() == L"Drum")
+        {
+            m_drumfactory.SetNote(note);
+            instrument = m_drumfactory.CreateInstrument();
         }
 
         // Configure the instrument object

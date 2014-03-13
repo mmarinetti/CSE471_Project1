@@ -4,10 +4,14 @@
 #include "msxml2.h"
 #include <vector>
 #include "Note.h"
+<<<<<<< origin/master
 #include "Chorus.h"
 #include "Flange.h"
 #include "NoiseGate.h"
 #include "Compression.h"
+=======
+#include "DrumFactory.h"
+>>>>>>> local
 
 using namespace std;
 
@@ -59,11 +63,15 @@ private:
 	void XmlLoadNote(IXMLDOMNode * xml, std::wstring & instrument);
 	std::vector<CNote> m_notes;
 
+<<<<<<< origin/master
 	CChorus m_chorus;
 	CFlange m_flange;
 	CNoiseGate m_noiseGate;
 	CCompression m_compression;
 
 	bool m_chorusOn, m_flangeOn, m_noiseGateOn, m_compressorOn;
+=======
+    CDrumFactory m_drumfactory;
+>>>>>>> local
 };
 

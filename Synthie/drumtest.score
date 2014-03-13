@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<score bpm="60" beatspermeasure="4">
+  <instrument instrument="Drum">
+    <note measure="1" beat="1" DrumType="TechOne"/>
+    <note measure="1" beat="2"/>
+    <note measure="1" beat="3"/>
+    <note measure="1" beat="4"/>
+
+    <note measure="2" beat="1" freq="100" DrumType="TechTwo"/>
+    <note measure="2" beat="2" freq="400" />
+    <note measure="2" beat="3" freq="1000" />
+    <note measure="2" beat="4" freq="3000" />
+
+    <note measure="3" beat="1" freq="100" DrumType="TechThree"/>
+    <note measure="3" beat="2" freq="400"/>
+    <note measure="3" beat="3" freq="1000"/>
+    <note measure="3" beat="4" freq="3000"/>
+
+  </instrument>
+</score>

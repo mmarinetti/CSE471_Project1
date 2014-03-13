@@ -72,6 +72,7 @@
     <ClCompile Include="Note.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+<<<<<<< origin/master
     <ClCompile Include="AdditiveSineWave.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -88,6 +89,21 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Compression.cpp">
+=======
+    <ClCompile Include="DrumInstrument.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AttackRelease.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Noise.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DrumFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WavePlayer.cpp">
+>>>>>>> local
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -155,6 +171,7 @@
     <ClInclude Include="Note.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+<<<<<<< origin/master
     <ClInclude Include="AdditiveSineWave.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -171,6 +188,21 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Compression.h">
+=======
+    <ClInclude Include="DrumInstrument.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AttackRelease.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Noise.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DrumFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WavePlayer.h">
+>>>>>>> local
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
