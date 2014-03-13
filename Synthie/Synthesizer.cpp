@@ -447,10 +447,7 @@ void CSynthesizer::XmlLoadNote(IXMLDOMNode * xml, std::wstring & instrument)
 
 	m_notes.push_back(CNote());
     m_notes.back().XmlLoad(xml, instrument);
-<<<<<<< HEAD
-}
 
-=======
 
 	if(m_chorusOn)
 		m_notes.back().setEffect(CHORUS);
@@ -462,4 +459,4 @@ void CSynthesizer::XmlLoadNote(IXMLDOMNode * xml, std::wstring & instrument)
 		m_notes.back().setEffect(COMPRESSOR);
 
 }
->>>>>>> b8bbb18743c6c98c5a1fa5c94580e5944957f262
+
