@@ -5,7 +5,7 @@
 class CNote;
 
 //Two different ways to use a techno drum,
-enum DrumStates{TechOne, TechTwo, TechThree, BassL, BassM, BassH, CrashHi, CrashLo,
+enum DrumStates{TechOne, Tech, TechThree, BassL, BassM, BassH, CrashHi, CrashLo,
                 HatClosed, HatOpen, Ride, ShakerL, ShakerM, ShakerH, SnareL, SnareM,
                 SnareH, Tom1L, Tom1M, Tom1H, Tom2L, Tom2M, Tom2H};
 
@@ -27,6 +27,12 @@ public:
 
     double m_amp;
     double m_freq;
+    double m_attack;
+    double m_release;
+    double m_decay;
+    bool m_fast;
+    bool m_slow;
+	bool m_adsr;
 
     int m_state;
 };

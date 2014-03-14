@@ -22,9 +22,9 @@ void CNoise::Start()
 bool CNoise::Generate()
 {
     double sample = 0;
-    sample = ((double(rand()) / double(RAND_MAX)) * (2)) - 1;
+    sample = ((double(rand()) / double(RAND_MAX)) * (1)) - .5;
 
-    m_frame[0]=m_frame[1]=sample;
+    m_frame[0]=m_frame[1]=sample*.5;
 
     return true;
 }

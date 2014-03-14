@@ -61,6 +61,7 @@ private:
 	void XmlLoadNote(IXMLDOMNode * xml, std::wstring & instrument);
 	std::vector<CNote> m_notes;
 
+	CDrumFactory m_drumfactory;
 	CChorus m_chorus;
 	CFlange m_flange;
 	CNoiseGate m_noiseGate;
@@ -68,7 +69,6 @@ private:
 
 	bool m_chorusOn, m_flangeOn, m_noiseGateOn, m_compressorOn;
 
-    CDrumFactory m_drumfactory;
-	CSubWaveInstrumentFactory m_waveinstfactory;
+    CSubWaveInstrumentFactory m_waveinstfactory;
 };
 

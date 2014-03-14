@@ -1,6 +1,7 @@
 #include "StdAfx.h"
 #include "DrumInstrument.h"
 #include "DrumFactory.h"
+#include "DrumWave.h"
 #include "Notes.h"
 #include <cmath>
 
@@ -10,9 +11,13 @@ CDrumInstrument::CDrumInstrument(void)
 {
     m_attack = .05;
     m_release = .05;
+	m_decay = .05;
+    m_sustain = .5;
     m_freq = 500;
-    m_amp = .5;
+    m_amp = .3;
     m_synthesizing = false;
+	adsr=false;
+    m_drumwave.SetFreq(100);
 }
 
 
@@ -27,10 +32,15 @@ void CDrumInstrument::Start()
     m_wavePlayer.Start();
     m_wavePlayer.SetSampleRate(GetSampleRate());
     m_time=0;
-    /*x11=0;
-    x21=0;
-    x12=0;
-    x22=0;*/
+
+    if(m_state < 3)
+    {
+        m_synthesizing = true;
+        m_attack = .3;
+        m_decay = .1;
+        m_release = .3;
+        m_duration = .8;
+    }
 }
 
 
@@ -57,31 +67,6 @@ void CDrumInstrument::SetNote(CNote *note)
         CComVariant value;
         attrib->get_nodeValue(&value);
 
-        /*if(name == "duration")
-        {
-            value.ChangeType(VT_R8);
-            m_duration=(value.dblVal);
-        }
-        else if(name == "amplitude")
-        {
-            value.ChangeType(VT_R8);
-            m_amp=(value.dblVal);
-        }
-        else if(name == "note")
-        {
-            SetFreq(NoteToFrequency(value.bstrVal));
-        }
-        else if(name == "attack")
-        {
-            value.ChangeType(VT_R8);
-            m_attack=(value.dblVal);
-        }
-        else if(name == "release")
-        {
-            value.ChangeType(VT_R8);
-            m_release=(value.dblVal);
-        }*/
-
     }
 
 }
@@ -90,26 +75,13 @@ void CDrumInstrument::SetState(int state)
 {
     m_state = state;
 
-    if(m_state == TechOne)
+    if(m_state < 3)
     {
-        m_duration = .1;
-        m_attack = .025;
-        m_release = .75;
         m_synthesizing = true;
-    }
-    else if (m_state == TechTwo)
-    {
-        m_duration = 1;
-        m_attack = .4;
+        m_attack = .05;
+        m_decay = .05;
         m_release = .4;
-        m_synthesizing = true;
-    }
-    else if (m_state == TechThree)
-    {
-        m_duration = 1;
-        m_attack = .4;
-        m_release = .4;
-        m_synthesizing = true;
+        m_duration = .6;
     }
 }
 
@@ -117,61 +89,39 @@ bool CDrumInstrument::Generate()
 {
     if(m_synthesizing)
     {
-        m_freq = m_freq/44100;
         // Tell the component to generate an audio sample
         m_noise.Generate();
-	
+        m_drumwave.Generate();
 
-        m_frame[0] = m_noise.Frame(0);
-        m_frame[1] = m_noise.Frame(1);
-        
-        if(m_state == TechTwo)
-        {
-            double x0 = m_noise.Frame(0);
-
-            double R = .05;
-            double theta = acos(cos(2*PI*m_freq)/(1+pow(R, 2)));
-            double A = (1-pow(R,2))*sin(theta);
-
-            double y0 = A*x0+(2*R*cos(theta))*x1-pow(R,2)*x2;
-            
-            m_frame[0]=m_frame[1]=y0;
-
-            x2 = x1;
-            x1 = x0;
-
-        }
-
-        else if(m_state == TechThree)
-        {
-            double x0 = m_noise.Frame(0);
-
-            double new_freq = m_freq + m_freq*(m_time/m_duration);
-
-            double R = .05;
-            double theta = acos(cos(2*PI*new_freq)/(1+pow(R, 2)));
-            double A = (1-pow(R,2))*sin(theta);
-
-            double y0 = A*x0+(2*R*cos(theta))*x1-pow(R,2)*x2;
-            
-            m_frame[0]=m_frame[1]=y0;
-
-            x2 = x1;
-            x1 = y0;
-        }
-
+		m_frame[0]=m_drumwave.Frame(0);
+		m_frame[1]=m_drumwave.Frame(1);
 
     	//ATTACK AND RELEASE IMPLEMENATION
-    	double factor = 0;
-    	if(m_time < m_attack){
-    		factor = m_time*1./m_attack;
+    	if(m_time < m_attack)
+		{
+    		factor = m_time/m_attack;
     		m_frame[0] *= factor;
     		m_frame[1] *= factor;
+			assert(m_time<.3);
     	}
-    	else if(m_time > ((m_duration * GetSecondsPerBeat()) - m_release)){
-    		factor = m_time*-1./m_release + (1./m_release)*(m_duration*GetSecondsPerBeat());
+        else if (m_time < (m_attack + m_decay))
+        {
+            factor = abs((1 + (m_sustain - 1) * (m_time / (m_attack + m_decay))));
+    		m_frame[0] = m_frame[0]*factor;
+    		m_frame[1] = m_frame[1]*factor;
+			assert(m_time > .29);
+        }
+        else if (m_time < (m_duration - m_release))
+        {
+            factor = m_sustain;
     		m_frame[0] *= factor;
-    		m_frame[1] *= factor;
+    		m_frame[1] *= factor;  
+        }
+        else
+        {
+            factor = (.5 + (0 - .5) * (m_time / (m_duration)));  
+    		m_frame[0] *= factor;
+    		m_frame[1] *= factor;  
         }
 
 
@@ -183,6 +133,13 @@ bool CDrumInstrument::Generate()
     }
     else
     {
+		if(adsr)
+		{
+			m_wavePlayer.SetAttack(m_attack);
+			m_wavePlayer.SetDecay(m_decay);
+			m_wavePlayer.SetRelease(m_release);
+		}
+
         bool valid = m_wavePlayer.Generate();
 
         m_frame[0] = m_wavePlayer.Frame(0)*m_amp;
@@ -190,4 +147,6 @@ bool CDrumInstrument::Generate()
 
         return valid;
     }
+
+
 }

@@ -14,6 +14,12 @@ CDrumFactory::CDrumFactory(void)
 {
     m_amp = .3;
     m_waves.clear();
+    m_attack = .05;
+    m_release = .05;
+    m_decay = .05;
+	m_slow=false;
+	m_fast=false;
+	m_adsr=false;
     
     LoadFile("BassL.wav");
     LoadFile("BassM.wav");
@@ -48,13 +54,19 @@ CDrumInstrument *CDrumFactory::CreateInstrument()
 
     instrument->SetAmplitude(m_amp);
     instrument->SetState(m_state);
+    instrument->SetFreq(m_freq);
+    instrument->SetAttack(m_attack);
+    instrument->SetDecay(m_decay);
+    instrument->SetRelease(m_release);
 
-    if(m_state != TechOne && m_state != TechTwo && m_state != TechThree)
+    if(m_state != TechOne && m_state != Tech && m_state != TechThree)
     {
         instrument->GetPlayer()->SetSamples(&m_waves[m_state-3][0], (int)(m_waves[m_state-3].size()));
-        instrument->SetFreq(m_freq);
-        instrument->SetAmplitude(m_amp);
     }
+
+    if (m_slow){instrument->GetPlayer()->SetSlow();}
+    if (m_fast){instrument->GetPlayer()->SetFast();}
+	if (m_adsr){instrument->SetAdsr();}
 
     return instrument;
 }
@@ -100,7 +112,34 @@ void CDrumFactory::SetNote(CNote *note)
             value.ChangeType(VT_R8);
             m_freq=(value.dblVal);
         }
-
+        else if(name == "attack")
+        {
+            value.ChangeType(VT_R8);
+            m_attack=(value.dblVal);
+			bool m_adsr = true;
+        }        
+        else if(name == "release")
+        {
+            value.ChangeType(VT_R8);
+            m_release=(value.dblVal);
+			bool m_adsr = true;
+        }
+        else if(name == "decay")
+        {
+            value.ChangeType(VT_R8);
+            m_release=(value.dblVal);
+			bool m_adsr = true;
+        }
+        else if(name == "slow")
+        {
+            value.ChangeType(VT_R8);
+            m_slow=(value.dblVal);
+        }
+        else if(name == "fast")
+        {
+            value.ChangeType(VT_R8);
+            m_fast=(value.dblVal);
+        }
     }
 
 }
@@ -136,7 +175,7 @@ bool CDrumFactory::LoadFile(const char *filename)
 int CDrumFactory::TypeToState(const WCHAR *name)
 {
     if(std::wstring(name) == L"TechOne"){return 0;}
-    else if(std::wstring(name) == L"TechTwo"){return 1;}
+    else if(std::wstring(name) == L"Tech"){return 1;}
     else if(std::wstring(name) == L"TechThree"){return 2;}
     else if(std::wstring(name) == L"BassL"){return 3;}
     else if(std::wstring(name) == L"BassM"){return 4;}
