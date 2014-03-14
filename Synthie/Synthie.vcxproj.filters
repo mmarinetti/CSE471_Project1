@@ -103,6 +103,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Compression.cpp" />
+    <ClCompile Include="SubWaveInstrument.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SubWaveInstrumentFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SubWavePlayer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="audio\DirSound.h">
@@ -197,6 +206,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="WavePlayer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SubWaveInstrument.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SubWaveInstrumentFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SubWavePlayer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

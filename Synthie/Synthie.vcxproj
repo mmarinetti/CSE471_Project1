@@ -146,6 +146,9 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="SubWaveInstrument.cpp" />
+    <ClCompile Include="SubWaveInstrumentFactory.cpp" />
+    <ClCompile Include="SubWavePlayer.cpp" />
     <ClCompile Include="Synthesizer.cpp" />
     <ClCompile Include="Synthie.cpp" />
     <ClCompile Include="SynthieView.cpp" />
@@ -179,6 +182,9 @@
     <ClInclude Include="Resource.h" />
     <ClInclude Include="SineWave.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="SubWaveInstrument.h" />
+    <ClInclude Include="SubWaveInstrumentFactory.h" />
+    <ClInclude Include="SubWavePlayer.h" />
     <ClInclude Include="Synthesizer.h" />
     <ClInclude Include="Synthie.h" />
     <ClInclude Include="SynthieView.h" />

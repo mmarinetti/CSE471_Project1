@@ -9,6 +9,7 @@
 #include "NoiseGate.h"
 #include "Compression.h"
 #include "DrumFactory.h"
+#include "SubWaveInstrumentFactory.h"
 
 using namespace std;
 
@@ -68,5 +69,6 @@ private:
 	bool m_chorusOn, m_flangeOn, m_noiseGateOn, m_compressorOn;
 
     CDrumFactory m_drumfactory;
+	CSubWaveInstrumentFactory m_waveinstfactory;
 };
 

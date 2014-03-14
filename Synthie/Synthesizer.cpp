@@ -30,6 +30,7 @@ CSynthesizer::CSynthesizer(void)
 	m_flangeOn = false;
 	m_noiseGateOn = false;
 	m_compressorOn = false;
+    m_waveinstfactory.LoadFiles(); //For subtractive, loading square, saw, and triangle to combine into one stream
 }
 
 
@@ -84,6 +85,11 @@ bool CSynthesizer::Generate(double* frame)
         {
             m_drumfactory.SetNote(note);
             instrument = m_drumfactory.CreateInstrument();
+        }
+        else if(note->Instrument() == L"SubSynth") //For the subtractive
+        {
+            m_waveinstfactory.SetNote(note);
+			instrument = m_waveinstfactory.CreateInstrument();
         }
 
         // Configure the instrument object
