@@ -112,6 +112,9 @@
     <ClCompile Include="SubWavePlayer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DrumWave.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="audio\DirSound.h">
@@ -216,6 +219,9 @@
     </ClInclude>
     <ClInclude Include="SubWavePlayer.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DrumWave.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

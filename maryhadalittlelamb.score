@@ -1,7 +1,38 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<score bpm="60" beatspermeasure="4">
+<score bpm="120" beatspermeasure="4">
+	
+	<instrument instrument="Drum">
+      <note measure="1" beat="1" DrumType="BassL"/>
+      <note measure="1" beat="2" DrumType="BassM"/>
+      <note measure="1" beat="3" DrumType="BassH"/>
+      <note measure="1" beat="4" DrumType="CrashHi"/>
+      <note measure="1" beat="4" DrumType="ShakerH"/>
+      <note measure="2" beat="1" DrumType="HatClosed"/>
+      <note measure="2" beat="2" DrumType="HatOpen"/>
+      <note measure="2" beat="3" DrumType="ShakerM"/>
+      <note measure="2" beat="4" DrumType="ShakerL"/>
+      <note measure="2" beat="4" DrumType="CrashLo"/>
+      <note measure="3" beat="1" DrumType="Tech"/>
+      <note measure="3" beat="2" DrumType="Ride"/>
+      <note measure="3" beat="3" DrumType="Tom2M"/>
+      <note measure="3" beat="3" DrumType="HatOpen"/>
+      <note measure="3" beat="4" DrumType="Tom1H"/>
+      <note measure="3" beat="4" DrumType="HatClosed"/>
+      <note measure="4" beat="1" DrumType="Tom1L"/>
+      <note measure="4" beat="2" DrumType="Tom1M"/>
+      <note measure="4" beat="3" DrumType="SnareM"/>
+      <note measure="4" beat="4" DrumType="SnareH"/>
+      <note measure="5" beat="1" DrumType="Tom2L"/>
+      <note measure="5" beat="2" DrumType="Tom2H"/>
+      <note measure="5" beat="3" DrumType="SnareL"/>
+      <note measure="5" beat="3" DrumType="CrashHi"/>
+      <note measure="5" beat="4" DrumType="CrashHi" attack=".1"/>
+      <note measure="6" beat="1" DrumType="BassH" slow="1"/>
+      <note measure="6" beat="2" DrumType="BassH" fast="1"/>
+   </instrument>
 
      <instrument instrument="AdditiveSynth" chorus="1" noisegate="1">
+	
     <note measure ="1" beat="1" duration =".5" amplitudes="1.0 .9 .8 .5" ADSR=".05 0 1.0 .05" note="B4" vibrato="4.0 4.0" crossFadeIn=".05" crossFadeOut=".05"/>
     <note measure ="1" beat="2" duration =".5" amplitudes="1.0 .9 .8 .5" ADSR=".05 0 1.0 .05" note="A4" vibrato="4.0 4.0" crossFadeIn=".05" crossFadeOut=".05"/>
     <note measure ="1" beat="3" duration =".5" amplitudes="1.0 .9 .8 .5" ADSR=".05 0 1.0 .05" note="G4" vibrato="4.0 4.0" crossFadeIn=".05" crossFadeOut=".05"/>
