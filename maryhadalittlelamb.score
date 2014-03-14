@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <score bpm="60" beatspermeasure="4">
 
-     <instrument instrument="AdditiveSynth">
+     <instrument instrument="AdditiveSynth" chorus="1" noisegate="1">
     <note measure ="1" beat="1" duration =".5" amplitudes="1.0 .9 .8 .5" ADSR=".05 0 1.0 .05" note="B4" vibrato="4.0 4.0" crossFadeIn=".05" crossFadeOut=".05"/>
     <note measure ="1" beat="2" duration =".5" amplitudes="1.0 .9 .8 .5" ADSR=".05 0 1.0 .05" note="A4" vibrato="4.0 4.0" crossFadeIn=".05" crossFadeOut=".05"/>
     <note measure ="1" beat="3" duration =".5" amplitudes="1.0 .9 .8 .5" ADSR=".05 0 1.0 .05" note="G4" vibrato="4.0 4.0" crossFadeIn=".05" crossFadeOut=".05"/>
@@ -144,7 +144,7 @@
 
   </instrument>
   
-     <instrument instrument="SubSynth">
+     <instrument instrument="SubSynth" flange="1" compression="1">
 	<note measure ="1" beat="1" duration =".5"  note="B4" gain="0.1" attack="0.1" release="0.1" />
 	<note measure ="1" beat="2" duration =".5"  note="A4" gain="0.1" attack="0.1" release="0.1" />
 	<note measure ="1" beat="3" duration =".5"  note="G4" gain="0.1" attack="0.1" release="0.1" />
@@ -285,6 +285,18 @@
 	
 	<note measure ="32" beat="1" duration ="2.0"  note="G4" gain="0.1" attack="0.1" release="0.1" />
 
+     </instrument>
+     <instrument instrument="Chorus">
+          <note delay=".0025" wet=".7" dry=".3" range=".5" rate="2"/>
+     </instrument>
+     <instrument instrument="Flange">
+          <note delay=".0005" wet=".7" dry=".3" range=".5" rate="2" level="2"/>
+     </instrument>
+     <instrument instrument="NoiseGate">
+          <note threshold="50" wet="1" dry="0"/>
+     </instrument>
+     <instrument instrument="Compressor">
+          <note threshold="10" wet="1" dry="0" ratio="2"/>
      </instrument>
 </score>
 
