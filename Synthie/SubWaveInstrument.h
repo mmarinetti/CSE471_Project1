@@ -15,6 +15,7 @@ public:
     virtual void SetNote(CNote *note);
 	void SetDuration(double d) {m_duration = d;}
     void SetFreq(double f) {m_freq = f;}
+	void SetGain(double g) {m_gain = g;}
 	short RemoveClipping( double a );
     CSubWavePlayer *GetPlayer() {return &m_wavePlayer;}
 
@@ -25,6 +26,7 @@ private:
 	double m_freq;
 	double m_release;
 	double m_attack;
+	double m_gain;
 
 	double y1;
 	double y2;

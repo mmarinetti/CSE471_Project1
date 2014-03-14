@@ -6,8 +6,9 @@ using namespace std;
 
 CSubWaveInstrument::CSubWaveInstrument(void)
 {
-	m_attack = .1;
+	m_gain= 10;
 	m_release = .1;
+	m_attack = .1;
 }
 
 CSubWaveInstrument::~CSubWaveInstrument(void)
@@ -76,6 +77,11 @@ void CSubWaveInstrument::SetNote(CNote *note)
 			value.ChangeType(VT_R8);
 			m_release = value.dblVal;
 		}
+		else if (name == "gain")
+		{
+			value.ChangeType(VT_R8);
+			m_gain = value.dblVal;
+		}
 
     }
 }
@@ -107,21 +113,22 @@ bool CSubWaveInstrument::Generate()
 
 	double b = 0.2;
     double R = 1-b/2;
-	int gain = 10;
+
     double theta = acos(cos(2*PI*f)/(1+pow(R, 2)));
-    double A = gain * (1-pow(R,2))*sin(theta);
+    double A = m_gain * (1-pow(R,2))*sin(theta);
 
     double y0 = A*frame0+(2*R*cos(theta))*y1-pow(R,2)*y2;
             
-	if ( ((m_duration * GetSecondsPerBeat()) - m_time) <= m_release )
-	{
-		y0 = ((m_duration * GetSecondsPerBeat()) - m_time / m_release);
-	}
-	else if ( (m_time >= 0) && (m_time <= m_attack) )
+
+	if ( (m_time >= 0) && (m_time <= m_attack) )
 	{
 		y0 *= ( m_time / m_attack );
 	}
-
+	else if ( m_time >= (m_duration * GetSecondsPerBeat() - m_release ) )
+	{
+		double factor = ( ((m_duration * GetSecondsPerBeat()) - m_time) / m_release );
+		y0 *= factor;
+	}
 	m_frame[0]=m_frame[1] = RemoveClipping(y0);
 	
 	y2 = y1; //y2 is the second to last output pushed
